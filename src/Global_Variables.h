@@ -7,6 +7,7 @@
 #define __Global_Variables_h__
 
 #include "def.h"
+#include "Modulation.h"
 
 // Main parametrs structure for EEPROM
 struct TRANSMITTER_SETTINGS
@@ -59,14 +60,14 @@ struct DEF_MODE
 // *** Описывает модель ********************************************************
 struct MODEL_SETTINGS
 {
-    int16_t    size;                 // Размер структуры. Должен быть sizeof(MODEL_SETTINGS)
-    char       name[MODEL_NAME_LEN]; // Название модели (максимум 12 символов + нуль-терминатор)
-    int8_t     type;                 // Тип модель: самолет, вертолет и т.д.
-    Modulation modulation;           // Тип модуляции: PPM, IPPM и т.д.
-    int16_t    timer;                // Начальное значение таймера
-    int8_t     timer_mode;           // Режим счета таймера ВВЕРХ/ВНИЗ
-    int8_t     num_ch;               // Количество каналов у модели
-    DEF_MODE   Mode[MAX_MODES];      // Управляющие каналы и микшер
+    int16_t        size;                 // Размер структуры. Должен быть sizeof(MODEL_SETTINGS)
+    char           name[MODEL_NAME_LEN]; // Название модели (максимум 12 символов + нуль-терминатор)
+    int8_t         type;                 // Тип модель: самолет, вертолет и т.д.
+    ModulationType modulation;           // Тип модуляции: PPM, IPPM и т.д.
+    int16_t        timer;                // Начальное значение таймера
+    int8_t         timer_mode;           // Режим счета таймера ВВЕРХ/ВНИЗ
+    int8_t         num_ch;               // Количество каналов у модели
+    DEF_MODE       Mode[MAX_MODES];      // Управляющие каналы и микшер
 };
 
 // Структура с данными текущей модели - находится в SRAM

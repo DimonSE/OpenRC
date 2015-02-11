@@ -7,6 +7,7 @@
 #define __Hardware_h__
 
 #include "../def.h"
+#include "../Modulation.h"
 
 void hwr_InitPorts();
 void hwr_InitTimers();
@@ -18,7 +19,7 @@ void hwr_InitADC();
 // функции. Главное прерывание опрашивает каналы АЦП из enum и складывает их в мессив AD[]. Значения брать оттуда.
 uint16_t read_adc(uint8_t adc_input);
 
-void hwr_SetModulation(const Modulation modulation);
+void hwr_SetModulation(const ModulationType modulation);
 
 void hwr_SetTone(uint16_t Freq);
 

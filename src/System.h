@@ -16,7 +16,6 @@ bool TX_IsFirstStart();
 void TX_Init();
 void TX_Reset();
 void TX_SaveSettings();
-void TX_SetModulation(int8_t Modulation);
 
 void MODEL_Init(int8_t ModelNum);
 void MODEL_Save_Trimmers();

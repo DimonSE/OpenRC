@@ -18,6 +18,7 @@
 #include "UI_Engine.h"
 #include "System.h"
 #include "User_Interface.h"
+#include "Modulation.h"
 
 #include <util/delay.h>
 
@@ -91,7 +92,8 @@ void MODEL_Init(int8_t ModelNum)
 
     eeprom_read_block(PtrDst, PtrSrc, sizeof(MODEL_SETTINGS));
 
-    hwr_SetModulation(CurModel.modulation);
+    UseModulation(CurModel.modulation);
+
     Timer_Init();
 
     sei();

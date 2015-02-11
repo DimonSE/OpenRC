@@ -6,7 +6,6 @@
 
 #include <avr/io.h>
 
-#include "../def.h"
 #include "Hardware.h"
 
 #include <util/delay.h>
@@ -118,16 +117,20 @@ uint16_t read_adc(uint8_t adc_input)
     return ADCW;
 }
 
-void hwr_SetModulation(const Modulation modulation)
+void hwr_SetModulation(const ModulationType modulation)
 {
     switch (modulation)
     {
-        case MODUL_PPM:
+        case MODULATION_TYPE_PPM:
             TCCR1A |= (1 << COM1A1) | (0 << COM1A0);
             break;
 
-        case MODUL_IPPM:
+        case MODULATION_TYPE_INVERSE_PPM:
             TCCR1A |= (1 << COM1A1) | (1 << COM1A0);
+            break;
+
+        case MODULATION_TYPE_PCM:
+            // TODO: Release this
             break;
     }
 }

@@ -20,7 +20,7 @@
 // ***   Длинна названия полётного режима (n символов + нуль-терминатор)   *****
 #define MODE_NAME_LEN  (10 + 1)
 
-#define DEFAULT_MODULATION MODUL_IPPM
+#define DEFAULT_MODULATION MODULATION_TYPE_PPM
 
 #define U_BAT_K 5
 
@@ -186,18 +186,6 @@ enum
     M_IDLEUP,
     M_THOLD,
     MAX_MODES
-};
-
-//
-// Modulation types
-//
-
-enum Modulation
-{
-    MODUL_PPM = 0,
-    MODUL_IPPM,
-    MODUL_PCM,
-    MAX_MODULS
 };
 
 //

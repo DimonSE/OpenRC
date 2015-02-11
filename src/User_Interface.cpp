@@ -18,6 +18,7 @@
 #include "Tasks.h"
 #include "System.h"
 #include "Sound.h"
+#include "Modulation.h"
 #include "hardware/Hardware.h"
 
 #include <util/delay.h>
@@ -428,31 +429,16 @@ void ModeTypeSet(int8_t AddParam)
 
 char* ModulationTypeGetStr(char* Buf, int8_t AddParam)
 {
-    const char* ModulationTypes[] = {
-            "PPM",
-            "IPPM",
-            "PCM"
-        };
-    
-    sprintf(Buf, "%s", ModulationTypes[CurModel.modulation]);
+    sprintf(Buf, "%s", GetCurrentModulationName());
     return Buf;
 }
 
 void ModulationTypeSet(int8_t AddParam)
 {
-    const char* ModulationTypes[] = {
-            "PPM",
-            "IPPM",
-            "PCM"
-        };
-
-    int8_t result = SelectBox(ModulationTypes, ARRAY_SIZE(ModulationTypes), CurModel.modulation, Font_8x12, "Modulation Type:", Font_8x8);
+    int8_t result = SelectBox(ModulationTypeName, ARRAY_SIZE(ModulationTypeName), CurModel.modulation, Font_8x12, "Modulation Type:", Font_8x8);
 
     if(result != RESULT_INCORRECT)
-    {
-        CurModel.modulation = (Modulation)result;
-        hwr_SetModulation(CurModel.modulation);
-    }
+        UseModulation((ModulationType)result);
 }
 
 char* ModelChannelsNumGetStr(char* Buf, int8_t AddParam)

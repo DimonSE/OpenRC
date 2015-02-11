@@ -19,7 +19,6 @@
 #include "UI_Engine.h"
 #include "User_Interface.h"
 #include "Tasks.h"
-#include "Math.h"
 #include "hardware/Hardware.h"
 #include "System.h"
 #include "Global_Variables.h"
@@ -29,33 +28,6 @@
 //
 // Interrupts
 //
-
-// Прерывание таймера в котором собственно говоря и идет вычисление импульсов
-ISR(TIMER1_COMPA_vect)
-{
-    static uint8_t  nb  = 0; // Номер текущего канала
-    static uint16_t del = 0; // Длительность паузы между пачками PPM импульсов
-
-    if(nb < CurModel.num_ch)
-    {
-        math_CalcChannel(nb); // Рассчет канального импульса - микширование
-
-        ICR1 = output[nb]; // Заливаем длительность канала
-        del += output[nb]; // Добавляем длительность канала к суммарному значению канальных импульсов
-
-        ++nb; // Увеличиваем номер канала
-    }
-    else
-    {
-        del = TimerClockPerUSec(TASK_TICK_TIME * USEC_IN_MSEC) - del; // Длительность паузы: количество отсчетов за 20 мсек - время канальных импульсов
-
-        ICR1 = del; // Заливаем длительность паузы
-        del  = 0;   // Обнуляем суммарное значение канальных импульсов
-        nb   = 0;   // Сбрасываем номер канала
-
-        math_CalcControls(); // Получение статуса управляющих элементов
-    }
-}
 
 // *****************************************************************************
 // ***   Прерывание таймера                                                  ***
@@ -130,7 +102,6 @@ int main()
 
     sei();
 
-    uint32_t LastRefreshTime = 0;
     uint8_t  Kbd = 0;
 
     while(true)
