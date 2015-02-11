@@ -19,7 +19,7 @@ void hwr_InitPorts()
     DDRA  = 0x00;
 
     // PORTB.0, PORTB.1, PORTB.2 and PORTB.3 use by SPI in TFT display, Also use for radio OCR1A
-    PORTB = 0xFF;
+    PORTB = 0x00;
     DDRB  = 0xFF;
 
     // PORTL.0, PORTL.1 and PORTL.2 use as GPIO in TFT display, other pins for trimmers and more
