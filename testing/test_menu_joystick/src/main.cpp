@@ -113,17 +113,17 @@ void Render()
   gfx_ClearBuf();
   for (uint8_t posStart = 0, posEnd = 1; posEnd < LinesCount; ++posStart, ++posEnd)
   {
-    gfx_DrawLine(Lines[posStart].x, Lines[posStart].y, Lines[posEnd].x, Lines[posEnd].y, COLOR_BLACK);
+    gfx_DrawLine(Lines[posStart].x, Lines[posStart].y, Lines[posEnd].x, Lines[posEnd].y, COLOR_FRONT);
   }
 
-  gfx_DrawLine(CrosswarePos.x, CrosswarePos.y, CrosswarePos.x - CrosswareSize, CrosswarePos.y, COLOR_RED);
-  gfx_DrawLine(CrosswarePos.x, CrosswarePos.y, CrosswarePos.x, CrosswarePos.y - CrosswareSize, COLOR_RED);
-  gfx_DrawLine(CrosswarePos.x, CrosswarePos.y, CrosswarePos.x + CrosswareSize, CrosswarePos.y, COLOR_RED);
-  gfx_DrawLine(CrosswarePos.x, CrosswarePos.y, CrosswarePos.x, CrosswarePos.y + CrosswareSize, COLOR_RED);
+  gfx_DrawLine(CrosswarePos.x, CrosswarePos.y, CrosswarePos.x - CrosswareSize, CrosswarePos.y, COLOR_FRONT);
+  gfx_DrawLine(CrosswarePos.x, CrosswarePos.y, CrosswarePos.x, CrosswarePos.y - CrosswareSize, COLOR_FRONT);
+  gfx_DrawLine(CrosswarePos.x, CrosswarePos.y, CrosswarePos.x + CrosswareSize, CrosswarePos.y, COLOR_FRONT);
+  gfx_DrawLine(CrosswarePos.x, CrosswarePos.y, CrosswarePos.x, CrosswarePos.y + CrosswareSize, COLOR_FRONT);
 
   static char str[100];
   sprintf(str, "Key = %i", KbdStat);
-  gfx_PrintString(10, 10, str, COLOR_BLACK, Font_8x8);
+  gfx_PrintString(10, 10, str, COLOR_FRONT, Font_8x8);
 }
 
 int main(void)
@@ -150,7 +150,7 @@ int main(void)
 
   gfx_Init();
 
-  gfx_PrintString(10, 60, "Hello!!!", COLOR_BLACK, Font_12x16);
+  gfx_PrintString(10, 60, "Hello!!!", COLOR_FRONT, Font_12x16);
   gfx_Refresh();
 
   _delay_ms(2000);

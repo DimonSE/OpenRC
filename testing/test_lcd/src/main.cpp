@@ -30,11 +30,11 @@ void demo1()
 {
   gfx_ClearBuf();
 
-  gfx_DrawLine(10, 10, TFT_ScreenWidth - 10, 10,   COLOR_BLACK);
-  gfx_DrawLine(10, 10, 10,  TFT_ScreenHeight - 10, COLOR_BLACK);
-  gfx_DrawLine(10, 10, TFT_ScreenWidth - 10, TFT_ScreenHeight - 10, COLOR_BLACK);
-  gfx_DrawLine(TFT_ScreenWidth - 10, 10, TFT_ScreenWidth - 10, TFT_ScreenHeight - 10, COLOR_BLACK);
-  gfx_DrawLine(10, TFT_ScreenHeight - 10, TFT_ScreenWidth - 10, TFT_ScreenHeight - 10, COLOR_BLACK);
+  gfx_DrawLine(10, 10, TFT_ScreenWidth - 10, 10,   COLOR_FRONT);
+  gfx_DrawLine(10, 10, 10,  TFT_ScreenHeight - 10, COLOR_FRONT);
+  gfx_DrawLine(10, 10, TFT_ScreenWidth - 10, TFT_ScreenHeight - 10, COLOR_FRONT);
+  gfx_DrawLine(TFT_ScreenWidth - 10, 10, TFT_ScreenWidth - 10, TFT_ScreenHeight - 10, COLOR_FRONT);
+  gfx_DrawLine(10, TFT_ScreenHeight - 10, TFT_ScreenWidth - 10, TFT_ScreenHeight - 10, COLOR_FRONT);
   
   gfx_Refresh();
   _delay_ms(2000);
@@ -93,29 +93,20 @@ void demo3()
 // Print text
 void demo4()
 {
-  const ColorIdx StartColor = COLOR_BLACK;
-  
-  static ColorIdx color = StartColor;
-
   gfx_ClearBuf();
 
-  gfx_PrintString(10, 10, "Hello World!", color, Font_4x6);
+  gfx_PrintString(10, 10, "Hello World!", COLOR_FRONT, Font_4x6);
 
-  gfx_PrintString(10, 20, "Hello World!", color, Font_6x8);
+  gfx_PrintString(10, 20, "Hello World!", COLOR_FRONT, Font_6x8);
 
-  gfx_PrintString(10, 30, "Hello World!", color, Font_8x8);
+  gfx_PrintString(10, 30, "Hello World!", COLOR_FRONT, Font_8x8);
 
-  gfx_PrintString(10, 40, "Hello World!", color, Font_8x12);
+  gfx_PrintString(10, 40, "Hello World!", COLOR_FRONT, Font_8x12);
 
-  gfx_PrintString(10, 55, "Hello World!", color, Font_12x16);
+  gfx_PrintString(10, 55, "Hello World!", COLOR_FRONT, Font_12x16);
   
   gfx_Refresh();
-  _delay_ms(4000);
-
-  if (color < COLOR_TABLE_MAX - 1)
-    color = ColorIdx(int8_t(color) + 1);
-  else
-    color = StartColor;
+  _delay_ms(3000);
 }
 
 int main(void)
@@ -142,8 +133,6 @@ int main(void)
     demo3();
     demo3();
 
-    demo4();
-    demo4();
     demo4();
   }
 }

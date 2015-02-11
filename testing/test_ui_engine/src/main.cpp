@@ -98,7 +98,7 @@ void ShowResult(const int8_t result)
     gfx_ClearBuf();
     char resultStr[12];
     sprintf(resultStr, "Result=%i", result);
-    gfx_PrintString(20, TFT_ScreenHeight / 2, resultStr, COLOR_BLACK, Font_8x12);
+    gfx_PrintString(20, TFT_ScreenHeight / 2, resultStr, COLOR_FRONT, Font_8x12);
     gfx_Refresh();
 
     _delay_ms(1000);
@@ -172,7 +172,7 @@ void StartDemoMenu()
             {"Start Edit name",    demo3, NULL, 0}
         };
     
-    CMenu menu(CString("Test Menu"), items, ARRAY_SIZE(items), Font_8x8);
+    CMenu menu("Test Menu", items, ARRAY_SIZE(items), Font_8x8);
 
     menu.Run();
 }
